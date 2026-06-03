@@ -1,0 +1,152 @@
+/* ── Topbar ─────────────────────────────────────────── */
+.swagger-ui .topbar {
+    background: #1a1a2e;
+    padding: 8px 24px;
+}
+
+.swagger-ui .topbar .download-url-wrapper input {
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+}
+
+.swagger-ui .topbar .download-url-wrapper .download-url-button {
+    background: #4f46e5;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+/* ── Info header ────────────────────────────────────── */
+.swagger-ui .info .title {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.swagger-ui .info .description p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* ── Authorize button ───────────────────────────────── */
+.swagger-ui .auth-wrapper .authorize {
+    border-color: #4f46e5;
+    color: #4f46e5;
+    border-radius: 6px;
+}
+
+.swagger-ui .auth-wrapper .authorize svg {
+    fill: #4f46e5;
+}
+
+/* ── Server selector ────────────────────────────────── */
+.swagger-ui .servers>label select {
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    font-size: 13px;
+    padding: 6px 10px;
+}
+
+/* ── Group headers (auth-controller etc.) ───────────── */
+.swagger-ui .opblock-tag {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+    padding: 12px 0 !important;
+}
+
+.swagger-ui .opblock-tag:hover {
+    background: #f9fafb !important;
+}
+
+/* ── Endpoint rows ──────────────────────────────────── */
+.swagger-ui .opblock {
+    border-radius: 8px !important;
+    margin-bottom: 6px !important;
+    box-shadow: none !important;
+    border-width: 0.5px !important;
+}
+
+/* GET */
+.swagger-ui .opblock.opblock-get {
+    background: #eff6ff !important;
+    border-color: #93c5fd !important;
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background: #2563eb !important;
+    border-radius: 4px !important;
+}
+
+/* POST */
+.swagger-ui .opblock.opblock-post {
+    background: #f0fdf4 !important;
+    border-color: #86efac !important;
+}
+
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+    background: #16a34a !important;
+    border-radius: 4px !important;
+}
+
+/* PUT */
+.swagger-ui .opblock.opblock-put {
+    background: #fffbeb !important;
+    border-color: #fcd34d !important;
+}
+
+.swagger-ui .opblock.opblock-put .opblock-summary-method {
+    background: #d97706 !important;
+    border-radius: 4px !important;
+}
+
+/* DELETE */
+.swagger-ui .opblock.opblock-delete {
+    background: #fef2f2 !important;
+    border-color: #fca5a5 !important;
+}
+
+.swagger-ui .opblock.opblock-delete .opblock-summary-method {
+    background: #dc2626 !important;
+    border-radius: 4px !important;
+}
+
+/* ── Method badge ───────────────────────────────────── */
+.swagger-ui .opblock-summary-method {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    min-width: 60px !important;
+    border-radius: 4px !important;
+    letter-spacing: 0.04em !important;
+}
+
+/* ── Path text ──────────────────────────────────────── */
+.swagger-ui .opblock-summary-path {
+    font-size: 14px !important;
+    font-family: 'Courier New', monospace !important;
+}
+
+.swagger-ui .opblock-summary-path .nostyle span {
+    color: #4f46e5 !important;
+}
+
+/* ── Lock icon ──────────────────────────────────────── */
+.swagger-ui .opblock-summary-lock {
+    opacity: 0.35;
+}
+
+.swagger-ui .opblock-summary-lock.unlocked {
+    opacity: 0.2;
+}
+
+/* ── Schemas section ────────────────────────────────── */
+.swagger-ui section.models {
+    border-radius: 8px !important;
+    border: 0.5px solid #e5e7eb !important;
+}
+
+.swagger-ui section.models h4 {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+}
