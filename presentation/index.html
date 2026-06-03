@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lets-play API — Soutenance</title>
+  <meta name="description" content="REST API sécurisée développée avec Spring Boot, MongoDB et JWT." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- CANVAS PARTICLES -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- SCANLINE OVERLAY -->
+  <div class="scanlines"></div>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="pre-inner">
+      <div class="pre-logo">LETS<span>·</span>PLAY</div>
+      <div class="pre-bar-wrap">
+        <div class="pre-bar"></div>
+      </div>
+      <div class="pre-text" id="pre-text">INITIALISATION...</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-bar"></div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor"></div>
+  <div class="cursor-trail"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">LETS<span>·</span>PLAY <em>API</em></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero" data-label="00">Accueil</a></li>
+      <li><a href="#objectif" data-label="01">Objectif</a></li>
+      <li><a href="#technologies" data-label="02">Stack</a></li>
+      <li><a href="#architecture" data-label="03">Archi</a></li>
+      <li><a href="#jwt" data-label="04">JWT</a></li>
+      <li><a href="#mongodb" data-label="05">MongoDB</a></li>
+      <li><a href="#demo" data-label="06">API</a></li>
+      <li><a href="#resultats" data-label="07">Résultats</a></li>
+      <li><a href="#auteurs" data-label="08">Équipe</a></li>
+    </ul>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="#hero">Accueil</a></li>
+      <li><a href="#objectif">Objectif</a></li>
+      <li><a href="#technologies">Stack</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#jwt">JWT</a></li>
+      <li><a href="#mongodb">MongoDB</a></li>
+      <li><a href="#demo">API</a></li>
+      <li><a href="#resultats">Résultats</a></li>
+      <li><a href="#auteurs">Équipe</a></li>
+    </ul>
+  </div>
+
+
+  <!-- ════════════════ HERO ════════════════ -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="blink-dot"></span>
+        <span>Soutenance Académique &nbsp;·&nbsp; Projet Java &nbsp;·&nbsp; 2025–2026</span>
+      </div>
+
+      <h1 class="hero-title">
+        <div class="title-line line-1">
+          <span class="char-anim" style="--d:0">l</span><span class="char-anim" style="--d:1">e</span><span
+            class="char-anim" style="--d:2">t</span><span class="char-anim" style="--d:3">s</span><span
+            class="char-anim" style="--d:4">-</span><span class="char-anim" style="--d:5">p</span><span
+            class="char-anim" style="--d:6">l</span><span class="char-anim" style="--d:7">a</span><span
+            class="char-anim" style="--d:8">y</span>
+        </div>
+        <div class="title-line line-2">
+          <span class="char-anim accent" style="--d:9">A</span><span class="char-anim accent"
+            style="--d:10">P</span><span class="char-anim accent" style="--d:11">I</span>
+        </div>
+      </h1>
+
+      <p class="hero-sub">
+        REST API sécurisée · Spring Boot · MongoDB · JWT
+      </p>
+
+      <div class="hero-cta">
+        <a href="#objectif" class="btn-launch">
+          <span class="btn-bg"></span>
+          <span class="btn-text">Explorer →</span>
+        </a>
+        <a href="https://github.com/Christ-MVE/lets-play" target="_blank" class="btn-outline">
+          ⌥ GitHub
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">9</span><span class="stat-label">Endpoints</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num">7</span><span class="stat-label">Fonctionnalités</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num">2</span><span class="stat-label">Collections DB</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Fonctionnel</span></div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-indicator">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Défiler</span>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ OBJECTIF ════════════════ -->
+  <section id="objectif">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num reveal">01</div>
+        <div>
+          <p class="section-tag reveal rd1">Objectif</p>
+          <h2 class="section-title reveal rd2">Pourquoi ce<br><em>projet ?</em></h2>
+        </div>
+      </div>
+
+      <p class="section-desc reveal rd3">
+        Concevoir une API REST complète et sécurisée, couvrant l'ensemble des besoins
+        d'un backend moderne : authentification robuste, gestion des accès,
+        persistance des données et documentation interactive.
+      </p>
+
+      <div class="cards-grid">
+        <div class="feature-card reveal rd1">
+          <div class="card-glow"></div>
+          <div class="card-num">01</div>
+          <div class="card-icon-wrap">🔐</div>
+          <h3>Authentification JWT</h3>
+          <p>Système d'authentification stateless basé sur des tokens JWT. Inscription, connexion et validation
+            sécurisée à chaque requête.</p>
+          <div class="card-line"></div>
+        </div>
+        <div class="feature-card reveal rd2">
+          <div class="card-glow"></div>
+          <div class="card-num">02</div>
+          <div class="card-icon-wrap">👤</div>
+          <h3>Gestion des Rôles</h3>
+          <p>Contrôle d'accès basé sur les rôles (RBAC). Différenciation des permissions entre utilisateurs standard et
+            administrateurs.</p>
+          <div class="card-line"></div>
+        </div>
+        <div class="feature-card reveal rd3">
+          <div class="card-glow"></div>
+          <div class="card-num">03</div>
+          <div class="card-icon-wrap">📦</div>
+          <h3>CRUD Produits</h3>
+          <p>Endpoints complets pour la création, lecture, mise à jour et suppression des produits, avec persistance
+            MongoDB.</p>
+          <div class="card-line"></div>
+        </div>
+        <div class="feature-card reveal rd4">
+          <div class="card-glow"></div>
+          <div class="card-num">04</div>
+          <div class="card-icon-wrap">📖</div>
+          <h3>Documentation Swagger</h3>
+          <p>Interface Swagger UI auto-générée permettant d'explorer et de tester tous les endpoints directement depuis
+            le navigateur.</p>
+          <div class="card-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ TECHNOLOGIES ════════════════ -->
+  <section id="technologies">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num reveal">02</div>
+        <div>
+          <p class="section-tag reveal rd1">Stack Technique</p>
+          <h2 class="section-title reveal rd2">Technologies<br><em>utilisées</em></h2>
+        </div>
+      </div>
+
+      <div class="tech-marquee-wrap reveal rd3">
+        <div class="tech-strip">
+          <div class="tech-item">
+            <span class="tech-emoji">☕</span>
+            <span class="tech-n">Java 17</span>
+            <span class="tech-s">LTS · JDK</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-emoji">🍃</span>
+            <span class="tech-n">Spring Boot</span>
+            <span class="tech-s">3.x · REST</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-emoji">🛡️</span>
+            <span class="tech-n">Spring Security</span>
+            <span class="tech-s">Auth · RBAC</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-emoji">🗄️</span>
+            <span class="tech-n">MongoDB</span>
+            <span class="tech-s">NoSQL · Local</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-emoji">🔑</span>
+            <span class="tech-n">JWT</span>
+            <span class="tech-s">JJWT · Bearer</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-emoji">📋</span>
+            <span class="tech-n">Swagger</span>
+            <span class="tech-s">OpenAPI 3</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-emoji">📦</span>
+            <span class="tech-n">Maven</span>
+            <span class="tech-s">Build · Deps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-details reveal rd4">
+        <div class="tech-detail-item">
+          <div class="tdi-badge" style="--c:#f59e0b">JDK</div>
+          <div class="tdi-body">
+            <strong>Java 17 LTS</strong>
+            <span>Records, sealed classes, pattern matching. Base solide et performante pour les applications
+              d'entreprise.</span>
+          </div>
+        </div>
+        <div class="tech-detail-item">
+          <div class="tdi-badge" style="--c:#4ade80">BOOT</div>
+          <div class="tdi-body">
+            <strong>Spring Boot 3.x</strong>
+            <span>Auto-configuration, embedded Tomcat, starters. Production-ready en quelques lignes de config.</span>
+          </div>
+        </div>
+        <div class="tech-detail-item">
+          <div class="tdi-badge" style="--c:#60a5fa">SEC</div>
+          <div class="tdi-body">
+            <strong>Spring Security</strong>
+            <span>SecurityFilterChain, BCryptPasswordEncoder, RBAC. Couche de sécurité hautement configurable.</span>
+          </div>
+        </div>
+        <div class="tech-detail-item">
+          <div class="tdi-badge" style="--c:#00ed64">DB</div>
+          <div class="tdi-body">
+            <strong>MongoDB + Spring Data</strong>
+            <span>MongoRepository, persistance locale via localhost:27017.</span>
+          </div>
+        </div>
+        <div class="tech-detail-item">
+          <div class="tdi-badge" style="--c:#a78bfa">JWT</div>
+          <div class="tdi-body">
+            <strong>JJWT · HS256</strong>
+            <span>Tokens signés, claims personnalisés, validation stateless. RFC 7519 compliant.</span>
+          </div>
+        </div>
+        <div class="tech-detail-item">
+          <div class="tdi-badge" style="--c:#fb923c">DOC</div>
+          <div class="tdi-body">
+            <strong>OpenAPI 3 · Swagger UI</strong>
+            <span>Documentation auto-générée, interface de test intégrée, authorization Bearer.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ ARCHITECTURE ════════════════ -->
+  <section id="architecture">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num reveal">03</div>
+        <div>
+          <p class="section-tag reveal rd1">Architecture</p>
+          <h2 class="section-title reveal rd2">Structure<br><em>en couches</em></h2>
+        </div>
+      </div>
+
+      <div class="arch-wrap">
+        <div class="arch-visual reveal rd2">
+          <div class="arch-req-arrow">
+            <span class="req-label">Requête HTTP</span>
+            <div class="req-line"></div>
+          </div>
+          <div class="arch-layers">
+            <div class="arch-l" data-color="#4f8ef7">
+              <div class="al-left">
+                <div class="al-icon">🌐</div>
+                <div class="al-info">
+                  <strong>Client / Swagger UI</strong>
+                  <span>Point d'entrée — tout client HTTP</span>
+                </div>
+              </div>
+              <div class="al-tag">ENTRY</div>
+            </div>
+            <div class="arch-connector">
+              <div class="conn-line"></div>
+              <div class="conn-arrow">▼</div>
+            </div>
+            <div class="arch-l" data-color="#7c5cfc">
+              <div class="al-left">
+                <div class="al-icon">🎯</div>
+                <div class="al-info">
+                  <strong>@RestController</strong>
+                  <span>Couche HTTP · Routes · JSON</span>
+                </div>
+              </div>
+              <div class="al-tag">CTRL</div>
+            </div>
+            <div class="arch-connector">
+              <div class="conn-line"></div>
+              <div class="conn-arrow">▼</div>
+            </div>
+            <div class="arch-l" data-color="#f59e0b">
+              <div class="al-left">
+                <div class="al-icon">🔒</div>
+                <div class="al-info">
+                  <strong>JwtAuthFilter</strong>
+                  <span>Validation token · Spring Security</span>
+                </div>
+              </div>
+              <div class="al-tag">SEC</div>
+            </div>
+            <div class="arch-connector">
+              <div class="conn-line"></div>
+              <div class="conn-arrow">▼</div>
+            </div>
+            <div class="arch-l" data-color="#60a5fa">
+              <div class="al-left">
+                <div class="al-icon">⚙️</div>
+                <div class="al-info">
+                  <strong>@Service</strong>
+                  <span>Logique métier · BCrypt · Tokens</span>
+                </div>
+              </div>
+              <div class="al-tag">SVC</div>
+            </div>
+            <div class="arch-connector">
+              <div class="conn-line"></div>
+              <div class="conn-arrow">▼</div>
+            </div>
+            <div class="arch-l" data-color="#34d399">
+              <div class="al-left">
+                <div class="al-icon">💾</div>
+                <div class="al-info">
+                  <strong>@Repository</strong>
+                  <span>Spring Data MongoDB · CRUD auto</span>
+                </div>
+              </div>
+              <div class="al-tag">REPO</div>
+            </div>
+            <div class="arch-connector">
+              <div class="conn-line"></div>
+              <div class="conn-arrow">▼</div>
+            </div>
+            <div class="arch-l" data-color="#00ed64" style="--glow:rgba(0,237,100,0.2)">
+              <div class="al-left">
+                <div class="al-icon">🗄️</div>
+                <div class="al-info">
+                  <strong>MongoDB</strong>
+                  <span>Base de données BSON · Collections</span>
+                </div>
+              </div>
+              <div class="al-tag">DB</div>
+            </div>
+          </div>
+          <div class="arch-resp-arrow">
+            <div class="resp-line"></div>
+            <span class="resp-label">Réponse JSON</span>
+          </div>
+        </div>
+
+        <div class="arch-info reveal rd3">
+          <h3>Architecture MVC Spring</h3>
+          <p>Séparation stricte des responsabilités en couches distinctes. Chaque composant a un rôle unique, facilitant
+            la maintenabilité et les tests.</p>
+
+          <div class="arch-facts">
+            <div class="arch-fact">
+              <div class="af-dot" style="background:#4f8ef7"></div>
+              <div>
+                <strong>Stateless</strong>
+                <span>Aucune session côté serveur. Le JWT porte toute l'information d'identité.</span>
+              </div>
+            </div>
+            <div class="arch-fact">
+              <div class="af-dot" style="background:#7c5cfc"></div>
+              <div>
+                <strong>Filter Chain</strong>
+                <span>JwtAuthFilter intercepte avant le contrôleur. Zéro accès non autorisé possible.</span>
+              </div>
+            </div>
+            <div class="arch-fact">
+              <div class="af-dot" style="background:#34d399"></div>
+              <div>
+                <strong>Repository Pattern</strong>
+                <span>MongoRepository abstrait toute la persistance. findBy*, save(), deleteById()
+                  out-of-the-box.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ JWT ════════════════ -->
+  <section id="jwt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num reveal">04</div>
+        <div>
+          <p class="section-tag reveal rd1">Sécurité</p>
+          <h2 class="section-title reveal rd2">Authentification<br><em>JWT</em></h2>
+        </div>
+      </div>
+
+      <div class="jwt-wrap">
+
+        <div class="jwt-flow reveal rd2">
+          <div class="jf-step" data-step="1">
+            <div class="jf-num">01</div>
+            <div class="jf-icon">👤</div>
+            <div class="jf-text">
+              <strong>Utilisateur</strong>
+              <span>Envoie email + mot de passe</span>
+            </div>
+            <div class="jf-arrow">↓</div>
+          </div>
+          <div class="jf-step" data-step="2">
+            <div class="jf-num">02</div>
+            <div class="jf-icon">🔐</div>
+            <div class="jf-text">
+              <strong>POST /auth/login</strong>
+              <span>Vérification BCrypt des credentials</span>
+            </div>
+            <div class="jf-arrow">↓</div>
+          </div>
+          <div class="jf-step" data-step="3">
+            <div class="jf-num">03</div>
+            <div class="jf-icon">🎫</div>
+            <div class="jf-text">
+              <strong>Génération JWT</strong>
+              <span>Token signé HS256 · Expiration 24h</span>
+            </div>
+            <div class="jf-arrow">↓</div>
+          </div>
+          <div class="jf-step" data-step="4">
+            <div class="jf-num">04</div>
+            <div class="jf-icon">📡</div>
+            <div class="jf-text">
+              <strong>Requête protégée</strong>
+              <span>Authorization: Bearer &lt;token&gt;</span>
+            </div>
+            <div class="jf-arrow">↓</div>
+          </div>
+          <div class="jf-step" data-step="5">
+            <div class="jf-num">05</div>
+            <div class="jf-icon">✅</div>
+            <div class="jf-text">
+              <strong>Validation & Accès</strong>
+              <span>JwtAuthFilter vérifie la signature</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="jwt-token reveal rd3">
+          <div class="jwt-token-header">
+            <span class="jwt-label">Anatomie du token JWT</span>
+            <span class="jwt-chip">RFC 7519</span>
+          </div>
+
+          <div class="token-visual">
+            <div class="tv-block tv-h">
+              <div class="tv-tag">HEADER</div>
+              <div class="tv-code">
+                <span class="tc-brace">{</span><br>
+                &nbsp;&nbsp;<span class="tc-key">"alg"</span>: <span class="tc-str">"HS256"</span>,<br>
+                &nbsp;&nbsp;<span class="tc-key">"typ"</span>: <span class="tc-str">"JWT"</span><br>
+                <span class="tc-brace">}</span>
+              </div>
+            </div>
+            <div class="tv-sep">.</div>
+            <div class="tv-block tv-p">
+              <div class="tv-tag">PAYLOAD</div>
+              <div class="tv-code">
+                <span class="tc-brace">{</span><br>
+                &nbsp;&nbsp;<span class="tc-key">"sub"</span>: <span class="tc-str">"user@email.com"</span>,<br>
+                &nbsp;&nbsp;<span class="tc-key">"role"</span>: <span class="tc-str">"USER"</span>,<br>
+                &nbsp;&nbsp;<span class="tc-key">"iat"</span>: <span class="tc-num">1715000000</span>,<br>
+                &nbsp;&nbsp;<span class="tc-key">"exp"</span>: <span class="tc-num">1715086400</span><br>
+                <span class="tc-brace">}</span>
+              </div>
+            </div>
+            <div class="tv-sep">.</div>
+            <div class="tv-block tv-s">
+              <div class="tv-tag">SIGNATURE</div>
+              <div class="tv-code">
+                HMACSHA256(<br>
+                &nbsp;&nbsp;base64(header) + <span class="tc-str">"."</span><br>
+                &nbsp;&nbsp;+ base64(payload),<br>
+                &nbsp;&nbsp;<span class="tc-key">SECRET_KEY</span><br>
+                )
+              </div>
+            </div>
+          </div>
+
+          <div class="jwt-meta">
+            <span class="jmeta-chip">⏰ 24h par défaut</span>
+            <span class="jmeta-chip">🔄 Refresh possible</span>
+            <span class="jmeta-chip">🚫 Stateless</span>
+            <span class="jmeta-chip">🔐 HS256</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ MONGODB ════════════════ -->
+  <section id="mongodb">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num reveal">05</div>
+        <div>
+          <p class="section-tag reveal rd1">Base de Données</p>
+          <h2 class="section-title reveal rd2">MongoDB<br><em>Collections</em></h2>
+        </div>
+      </div>
+
+      <div class="mongo-wrap">
+
+        <div class="mongo-schema reveal rd2">
+          <div class="mschema-db">
+            <span class="mdb-label">DATABASE</span>
+            <span class="mdb-name">letsplay</span>
+          </div>
+
+          <div class="mcoll">
+            <div class="mcoll-head">
+              <span class="mcoll-icon">📁</span>
+              <span class="mcoll-name">users</span>
+              <span class="mcoll-badge">collection</span>
+            </div>
+            <div class="mcoll-doc">
+              <div class="mdoc-line"><span class="mdk">_id</span><span class="mdcolon">:</span><span
+                  class="mdv id">ObjectId("683a2f...")</span></div>
+              <div class="mdoc-line"><span class="mdk">username</span><span class="mdcolon">:</span><span
+                  class="mdv str">"john.doe"</span></div>
+              <div class="mdoc-line"><span class="mdk">email</span><span class="mdcolon">:</span><span
+                  class="mdv str">"john@example.com"</span></div>
+              <div class="mdoc-line"><span class="mdk">password</span><span class="mdcolon">:</span><span
+                  class="mdv muted">"$2a$10$..." <em>// BCrypt hash</em></span></div>
+              <div class="mdoc-line"><span class="mdk">role</span><span class="mdcolon">:</span><span
+                  class="mdv str">"USER"</span></div>
+            </div>
+          </div>
+
+          <div class="mcoll">
+            <div class="mcoll-head">
+              <span class="mcoll-icon">📁</span>
+              <span class="mcoll-name">products</span>
+              <span class="mcoll-badge">collection</span>
+            </div>
+            <div class="mcoll-doc">
+              <div class="mdoc-line"><span class="mdk">_id</span><span class="mdcolon">:</span><span
+                  class="mdv id">ObjectId("683b4c...")</span></div>
+              <div class="mdoc-line"><span class="mdk">name</span><span class="mdcolon">:</span><span
+                  class="mdv str">"PlayStation 5"</span></div>
+              <div class="mdoc-line"><span class="mdk">description</span><span class="mdcolon">:</span><span
+                  class="mdv str">"Console Sony..."</span></div>
+              <div class="mdoc-line"><span class="mdk">price</span><span class="mdcolon">:</span><span
+                  class="mdv num">549.99</span> <span class="mdv muted"><em>// Double</em></span></div>
+              <div class="mdoc-line"><span class="mdk">stock</span><span class="mdcolon">:</span><span
+                  class="mdv num">12</span> <span class="mdv muted"><em>// Integer</em></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mongo-features reveal rd3">
+          <div class="mf-item">
+            <div class="mf-icon">📄</div>
+            <div class="mf-body">
+              <strong>Documents BSON</strong>
+              <span>Format JSON étendu en binaire. Supporte Date, ObjectId, Array et sous-documents imbriqués.</span>
+            </div>
+          </div>
+          <div class="mf-item">
+            <div class="mf-icon">⚡</div>
+            <div class="mf-body">
+              <strong>Spring Data MongoDB</strong>
+              <span>Mapping via @Document et @Field. Requêtes dérivées du nom de méthode, zéro SQL.</span>
+            </div>
+          </div>
+          <div class="mf-item">
+            <div class="mf-icon">🔄</div>
+            <div class="mf-body">
+              <strong>CRUD Out-of-the-box</strong>
+              <span>MongoRepository fournit save(), findById(), findAll(), deleteById() automatiquement.</span>
+            </div>
+          </div>
+          <div class="mf-item">
+            <div class="mf-icon">🧭</div>
+            <div class="mf-body">
+              <strong>MongoDB Compass</strong>
+              <span>Visualisation graphique des collections et insertions en temps réel.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ DEMO API ════════════════ -->
+  <section id="demo">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num reveal">06</div>
+        <div>
+          <p class="section-tag reveal rd1">Démonstration</p>
+          <h2 class="section-title reveal rd2">API<br><em>Endpoints</em></h2>
+        </div>
+      </div>
+
+      <div class="demo-wrap">
+
+        <!-- Swagger mockup -->
+        <div class="swagger-mock reveal rd2">
+          <div class="sm-bar">
+            <div class="sm-dots">
+              <span style="background:#ff5f57"></span>
+              <span style="background:#febc2e"></span>
+              <span style="background:#28c840"></span>
+            </div>
+            <div class="sm-url">http://localhost:8080/swagger-ui/index.html</div>
+            <div></div>
+          </div>
+          <div class="sm-body">
+            <div class="sm-title">LETS-PLAY API — OpenAPI 3.0</div>
+
+            <div class="sm-group">auth-controller</div>
+            <div class="ep-row" data-url="http://localhost:8080/swagger-ui/index.html#/">
+              <span class="ep-method post">POST</span>
+              <span class="ep-path">/auth/register</span>
+              <span class="ep-desc">Inscription</span>
+            </div>
+            <div class="ep-row" data-url="http://localhost:8080/swagger-ui/index.html#/">
+              <span class="ep-method post">POST</span>
+              <span class="ep-path">/auth/login</span>
+              <span class="ep-desc">Connexion → JWT</span>
+            </div>
+
+            <div class="sm-group">user-controller</div>
+            <div class="ep-row">
+              <span class="ep-method get">GET</span>
+              <span class="ep-path">/users</span>
+              <span class="ep-desc">Liste 🔒</span>
+            </div>
+            <div class="ep-row">
+              <span class="ep-method get">GET</span>
+              <span class="ep-path">/users/{id}</span>
+              <span class="ep-desc">Détail 🔒</span>
+            </div>
+            <div class="ep-row">
+              <span class="ep-method del">DEL</span>
+              <span class="ep-path">/users/{id}</span>
+              <span class="ep-desc">Supprimer 🔒</span>
+            </div>
+
+            <div class="sm-group">product-controller</div>
+            <div class="ep-row">
+              <span class="ep-method get">GET</span>
+              <span class="ep-path">/products</span>
+              <span class="ep-desc">Catalogue</span>
+            </div>
+            <div class="ep-row">
+              <span class="ep-method post">POST</span>
+              <span class="ep-path">/products</span>
+              <span class="ep-desc">Créer 🔒</span>
+            </div>
+            <div class="ep-row">
+              <span class="ep-method put">PUT</span>
+              <span class="ep-path">/products/{id}</span>
+              <span class="ep-desc">Modifier 🔒</span>
+            </div>
+            <div class="ep-row">
+              <span class="ep-method del">DEL</span>
+              <span class="ep-path">/products/{id}</span>
+              <span class="ep-desc">Supprimer 🔒</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Steps + Timeline -->
+        <div class="demo-right reveal rd3">
+          <div class="demo-steps">
+            <div class="ds-step">
+              <div class="ds-num">01</div>
+              <div class="ds-body">
+                <strong>S'inscrire / Se connecter</strong>
+                <span>POST /auth/register puis POST /auth/login. La réponse contient le token JWT à copier.</span>
+              </div>
+            </div>
+            <div class="ds-step">
+              <div class="ds-num">02</div>
+              <div class="ds-body">
+                <strong>Cliquer sur Authorize 🔓</strong>
+                <span>Dans Swagger UI, coller le token dans le champ "Bearer {token}" et valider.</span>
+              </div>
+            </div>
+            <div class="ds-step">
+              <div class="ds-num">03</div>
+              <div class="ds-body">
+                <strong>Try it out → Execute</strong>
+                <span>Sélectionner n'importe quel endpoint protégé 🔒, remplir le body et cliquer Execute.</span>
+              </div>
+            </div>
+            <div class="ds-step">
+              <div class="ds-num">04</div>
+              <div class="ds-body">
+                <strong>Voir la réponse JSON</strong>
+                <span>Code 200/201 → données. Code 401/403 → accès refusé sans token valide.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-timeline">
+            <div class="dt-title">Flux CRUD complet</div>
+            <div class="dt-items">
+              <div class="dt-item">
+                <div class="dt-dot" style="--c:#4f8ef7"></div>
+                <div class="dt-content">
+                  <span class="dt-phase">Phase 1</span>
+                  <strong>Authentification</strong>
+                  <code>POST /auth/login → 200 OK</code>
+                </div>
+              </div>
+              <div class="dt-item">
+                <div class="dt-dot" style="--c:#7c5cfc"></div>
+                <div class="dt-content">
+                  <span class="dt-phase">Phase 2</span>
+                  <strong>Création produit</strong>
+                  <code>POST /products → 201 Created</code>
+                </div>
+              </div>
+              <div class="dt-item">
+                <div class="dt-dot" style="--c:#00d97e"></div>
+                <div class="dt-content">
+                  <span class="dt-phase">Phase 3</span>
+                  <strong>Persistance MongoDB</strong>
+                  <code>db.products.insertOne({"{...}"})</code>
+                </div>
+              </div>
+              <div class="dt-item">
+                <div class="dt-dot" style="--c:#f97316"></div>
+                <div class="dt-content">
+                  <span class="dt-phase">Phase 4</span>
+                  <strong>Récupération</strong>
+                  <code>GET /products → 200 OK [{"{...}"}]</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ RÉSULTATS ════════════════ -->
+  <section id="resultats">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num reveal">07</div>
+        <div>
+          <p class="section-tag reveal rd1">Bilan</p>
+          <h2 class="section-title reveal rd2">Résultats<br><em>du projet</em></h2>
+        </div>
+      </div>
+
+      <div class="resultats-wrap">
+
+        <div class="checklist reveal rd2">
+          <div class="cl-item">
+            <div class="cl-check">✓</div>
+            <div class="cl-label">Spring Boot opérationnel</div>
+            <div class="cl-bar">
+              <div class="cl-fill" style="--w:100%"></div>
+            </div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-check">✓</div>
+            <div class="cl-label">MongoDB connecté & fonctionnel</div>
+            <div class="cl-bar">
+              <div class="cl-fill" style="--w:100%"></div>
+            </div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-check">✓</div>
+            <div class="cl-label">Authentification JWT implémentée</div>
+            <div class="cl-bar">
+              <div class="cl-fill" style="--w:100%"></div>
+            </div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-check">✓</div>
+            <div class="cl-label">Swagger UI documenté</div>
+            <div class="cl-bar">
+              <div class="cl-fill" style="--w:100%"></div>
+            </div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-check">✓</div>
+            <div class="cl-label">CRUD produits complet</div>
+            <div class="cl-bar">
+              <div class="cl-fill" style="--w:100%"></div>
+            </div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-check">✓</div>
+            <div class="cl-label">Sécurité des routes protégées</div>
+            <div class="cl-bar">
+              <div class="cl-fill" style="--w:100%"></div>
+            </div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-check">✓</div>
+            <div class="cl-label">Gestion des rôles RBAC</div>
+            <div class="cl-bar">
+              <div class="cl-fill" style="--w:100%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-box reveal rd3">
+          <div class="sb-glow"></div>
+          <div class="sb-inner">
+            <div class="sb-trophy">🏆</div>
+            <div class="sb-eyebrow">Statut du projet</div>
+            <div class="sb-status">VALIDÉ</div>
+            <p>Tous les objectifs académiques ont été atteints. L'API est fonctionnelle, sécurisée et documentée.</p>
+            <div class="sb-chips">
+              <span>7 fonctionnalités</span>
+              <span>2 collections DB</span>
+              <span>9 endpoints</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ AUTEURS ════════════════ -->
+  <section id="auteurs">
+    <div class="container">
+      <div class="section-header centered">
+        <div>
+          <p class="section-tag reveal rd1">Équipe</p>
+          <h2 class="section-title reveal rd2" style="text-align:center">Le projet,<br><em>réalisé par</em></h2>
+        </div>
+      </div>
+
+      <div class="auteurs-grid">
+        <div class="auteur-card reveal rd2">
+          <div class="ac-bg" style="--g1:#4f8ef7;--g2:#7c5cfc"></div>
+          <div class="ac-content">
+            <div class="ac-avatar" style="--g1:#4f8ef7;--g2:#7c5cfc">CR</div>
+            <div class="ac-name">Christ Renaud MVE</div>
+            <div class="ac-role">Lead Developer</div>
+            <ul class="ac-skills">
+              <li>Architecture Spring Boot</li>
+              <li>Sécurité JWT & Spring Security</li>
+              <li>Intégration MongoDB</li>
+              <li>Configuration Maven</li>
+              <li>Documentation Swagger</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="auteur-card reveal rd3">
+          <div class="ac-bg" style="--g1:#7c5cfc;--g2:#f97316"></div>
+          <div class="ac-content">
+            <div class="ac-avatar" style="--g1:#7c5cfc;--g2:#f97316">AC</div>
+            <div class="ac-name">Amine CHACHOU</div>
+            <div class="ac-role">Developer & QA</div>
+            <ul class="ac-skills">
+              <li>Développement des endpoints</li>
+              <li>Validation des données</li>
+              <li>Tests fonctionnels</li>
+              <li>Gestion des erreurs</li>
+              <li>Revue de code</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="auteurs-note reveal rd4">
+        <span>Projet académique — 2025–2026</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ LAUNCH CTA ════════════════ -->
+  <section id="launch">
+    <div class="launch-bg">
+      <div class="launch-orb launch-orb-1"></div>
+      <div class="launch-orb launch-orb-2"></div>
+      <div class="launch-grid"></div>
+    </div>
+    <div class="launch-content reveal">
+      <div class="launch-eyebrow">
+        <span class="blink-dot"></span>
+        <span>API en cours d'exécution sur localhost:8080</span>
+      </div>
+      <h2 class="launch-title">Prêt à<br><em>tester l'API ?</em></h2>
+      <p class="launch-sub">
+        Accédez à l'interface Swagger UI pour explorer et tester tous les endpoints en temps réel.
+        Authentification, CRUD produits, gestion des rôles — tout est là.
+      </p>
+      <a href="http://localhost:8080/swagger-ui/index.html#/" target="_blank" class="btn-start">
+        <span class="bs-particles">
+          <span></span><span></span><span></span><span></span><span></span>
+        </span>
+        <span class="bs-icon">🚀</span>
+        <span class="bs-text">Lancer Swagger UI</span>
+        <span class="bs-arrow">→</span>
+      </a>
+      <div class="launch-meta">
+        <span>OpenAPI 3.0</span>
+        <span>·</span>
+        <span>localhost:8080</span>
+        <span>·</span>
+        <span>Spring Boot</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">LETS<span>·</span>PLAY API</div>
+      <p>Projet académique — REST API Spring Boot + MongoDB + JWT</p>
+      <a href="https://github.com/Christ-MVE/lets-play" target="_blank" class="footer-gh">
+        ⌥ GitHub — Christ-MVE/lets-play
+      </a>
+      <div class="footer-stack">
+        SOUTENANCE &nbsp;·&nbsp; JAVA &nbsp;·&nbsp; SPRING BOOT &nbsp;·&nbsp; MONGODB &nbsp;·&nbsp; JWT
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="back-top" aria-label="Retour en haut">↑</button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
