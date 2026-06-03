@@ -2,53 +2,49 @@
 
 API REST sécurisée développée avec **Spring Boot 3**, **MongoDB** et **JWT Authentication**.
 
-Le projet permet :
-
-- Authentification utilisateur
-- Gestion des rôles (USER / ADMIN)
-- Gestion complète des produits (CRUD)
-- Documentation interactive avec Swagger
-- Persistance des données avec MongoDB
+Projet réalisé dans le cadre d’un projet académique afin de construire une API REST moderne avec authentification, gestion des utilisateurs et gestion de produits.
 
 ---
 
 # 📌 Fonctionnalités
 
-## Authentification
-✔ Inscription utilisateur  
-✔ Connexion JWT  
-✔ Génération automatique de token
+## 🔐 Authentification
 
-## Produits
-✔ Créer un produit  
-✔ Modifier un produit  
-✔ Supprimer un produit  
-✔ Afficher un produit  
-✔ Afficher tous les produits  
+* Inscription utilisateur
+* Connexion JWT
+* Génération automatique de token
+* Gestion des rôles
 
-## Utilisateurs
-✔ Afficher les utilisateurs  
-✔ Gestion ADMIN uniquement  
+## 👤 Utilisateurs
 
-## Sécurité
-✔ JWT  
-✔ BCrypt  
-✔ Spring Security  
-✔ Contrôle des rôles  
+* Consultation des utilisateurs
+* Protection ADMIN
+
+## 📦 Produits
+
+* Création
+* Modification
+* Suppression
+* Consultation
+
+## 📚 Documentation
+
+* Swagger / OpenAPI intégré
+* Tests directs depuis le navigateur
 
 ---
 
-# 🛠 Technologies
+# 🛠 Technologies utilisées
 
-| Technologie | Version |
-|------------|---------|
-| Java | 17 |
-| Spring Boot | 3.3.5 |
-| Spring Security | 6 |
-| MongoDB | 8 |
-| JWT | 0.12.6 |
-| Swagger | OpenAPI 3 |
-| Maven | 3+ |
+| Technologie     | Version   |
+| --------------- | --------- |
+| Java            | 17        |
+| Spring Boot     | 3.3       |
+| Spring Security | 6         |
+| MongoDB         | 8         |
+| JWT             | 0.12.6    |
+| Swagger         | OpenAPI 3 |
+| Maven           | 3+        |
 
 ---
 
@@ -58,41 +54,40 @@ Le projet permet :
 lets-play
 │
 ├── src
-│ ├── main
-│ │ ├── java/com/letsplay
-│ │ │
-│ │ ├── config
-│ │ ├── controller
-│ │ ├── dto
-│ │ ├── exception
-│ │ ├── model
-│ │ ├── repository
-│ │ ├── security
-│ │ └── service
-│ │
-│ └── resources
+│   ├── main
+│   │   ├── java/com/letsplay
+│   │   │
+│   │   ├── config
+│   │   ├── controller
+│   │   ├── dto
+│   │   ├── exception
+│   │   ├── model
+│   │   ├── repository
+│   │   ├── security
+│   │   └── service
+│   │
+│   └── resources
 │
 ├── pom.xml
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
 
 # ⚙️ Installation
 
-## 1 — Cloner
+## Cloner le projet
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/Christ-MVE/lets-play.git
 
 cd lets-play
 ```
 
 ---
 
-## 2 — Lancer MongoDB
-
-Vérifier :
+## Lancer MongoDB
 
 ```bash
 mongod
@@ -106,7 +101,13 @@ mongodb://localhost:27017
 
 ---
 
-## 3 — Configurer application.properties
+## Configuration
+
+Créer ou modifier :
+
+```properties
+src/main/resources/application.properties
+```
 
 ```properties
 spring.application.name=lets-play
@@ -124,47 +125,43 @@ app.cors.allowed-origins=http://localhost:3000
 
 ---
 
-## 4 — Démarrer
+## Démarrage
 
 ```bash
 mvn spring-boot:run
 ```
 
-Attendre :
-
-```text
-Tomcat started on port 8080
-Started LetsPlayApplication
-```
-
----
-
-# 🌐 Accès application
-
-## Documentation Swagger
-
-```text
-http://localhost:8080/swagger-ui/index.html
-```
-
-⚠️ Ne pas ouvrir :
+Application :
 
 ```text
 http://localhost:8080
 ```
 
-Le projet est une API REST → aucune interface graphique n’est prévue sur `/`.
+---
+
+# 📚 Documentation Swagger
+
+Accéder à :
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+Permet :
+
+* tester les endpoints
+* générer les requêtes
+* utiliser JWT
+* visualiser les réponses
 
 ---
 
 # 🔐 Authentification
 
-## Inscription
-
-### POST
+## Register
 
 ```http
-/auth/register
+POST /auth/register
 ```
 
 Exemple :
@@ -179,12 +176,10 @@ Exemple :
 
 ---
 
-## Connexion
-
-### POST
+## Login
 
 ```http
-/auth/login
+POST /auth/login
 ```
 
 Exemple :
@@ -206,25 +201,16 @@ Réponse :
 
 ---
 
-# 🔑 Utiliser JWT
+# 🔑 Utiliser JWT dans Swagger
 
-Dans Swagger :
-
-1. Login
-2. Copier token
-3. Cliquer sur :
-
-```text
-Authorize
-```
-
-4. Coller :
+1. Se connecter
+2. Copier le token
+3. Cliquer sur **Authorize**
+4. Coller uniquement :
 
 ```text
-TOKEN
+JWT_TOKEN
 ```
-
-(Sans écrire Bearer)
 
 ---
 
@@ -242,34 +228,19 @@ Accès :
 ADMIN uniquement
 ```
 
-Exemple :
-
-```json
-[
-{
-"id":"...",
-"name":"Admin",
-"email":"admin@test.com",
-"role":"ADMIN"
-}
-]
-```
-
 ---
 
 # 📦 Endpoints Produits
 
-## Voir tous
+## Tous les produits
 
 ```http
 GET /products
 ```
 
-Public.
-
 ---
 
-## Voir un
+## Produit par ID
 
 ```http
 GET /products/{id}
@@ -311,9 +282,9 @@ DELETE /products/{id}
 
 ---
 
-# 🗄 Base MongoDB
+# 🗄 Base de données
 
-Connexion :
+MongoDB :
 
 ```text
 localhost:27017
@@ -332,64 +303,43 @@ users
 products
 ```
 
-Exemple :
-
-```json
-{
-"name":"Produit Swagger",
-"price":999
-}
-```
-
 ---
 
 # 🔒 Sécurité
 
-Le projet applique :
+Le projet utilise :
 
-✔ JWT Authentication  
-✔ BCrypt Password Encoder  
-✔ Session Stateless  
-✔ CORS Configuration  
-✔ Protection des routes  
+* JWT Authentication
+* BCrypt Password Encoder
+* Spring Security
+* Session Stateless
+* Contrôle des rôles
 
 ---
 
 # 🧪 Tests réalisés
 
-| Test | Statut |
-|------|--------|
-| Register | ✅ |
-| Login JWT | ✅ |
-| GET Users | ✅ |
-| CRUD Produits | ✅ |
-| Swagger | ✅ |
-| MongoDB Compass | ✅ |
+✅ Register
+✅ Login JWT
+✅ CRUD Produits
+✅ Gestion ADMIN
+✅ Swagger
+✅ MongoDB Compass
 
 ---
 
-# 📚 Documentation
+# 👨‍💻 Auteurs
 
-Swagger :
+### Christ Renaud MVE
 
-```text
-http://localhost:8080/swagger-ui/index.html
-```
+Développement backend • Architecture • Sécurité • Intégration
 
-API JSON :
+### Amine CHACHOU
 
-```text
-http://localhost:8080/v3/api-docs
-```
+Développement • Implémentation • Validation
 
 ---
 
-# 👨‍💻 Auteur
+# 📄 Licence
 
-Projet universitaire — API REST Spring Boot
-
-Nom :
-
-```text
-lets-play API
-```
+Projet académique — usage éducatif.
